@@ -10,7 +10,7 @@
       --bg-light: #1a1d25;
       --accent: #00d4ff;
       --text: #f1f1f1;
-      --gray: #999;
+      --gray: #aaa;
     }
     * {
       box-sizing: border-box;
@@ -47,7 +47,7 @@
       color: var(--accent);
     }
     main {
-      max-width: 900px;
+      max-width: 1000px;
       margin: 40px auto;
       padding: 0 20px;
     }
@@ -56,33 +56,29 @@
       font-size: 1.8em;
       margin-bottom: 20px;
     }
-    ul {
-      list-style: none;
-      padding: 0;
-    }
-    li {
+    .script-block {
       background: var(--bg-light);
-      padding: 15px 20px;
-      margin-bottom: 15px;
       border-left: 5px solid var(--accent);
+      padding: 20px;
+      margin-bottom: 30px;
+      border-radius: 8px;
+    }
+    .script-block h3 {
+      margin-top: 0;
+      color: var(--accent);
+    }
+    pre {
+      background: #1d1f27;
+      padding: 15px;
       border-radius: 6px;
-      transition: background 0.3s;
-    }
-    li:hover {
-      background: #232834;
-    }
-    a.script-link {
-      color: var(--text);
-      font-size: 1.1em;
-      font-weight: bold;
-      text-decoration: none;
-    }
-    a.script-link:hover {
-      text-decoration: underline;
+      overflow-x: auto;
+      color: #00ffcc;
+      font-size: 0.95em;
     }
     .note {
-      font-size: 0.9em;
       color: var(--gray);
+      font-size: 0.9em;
+      margin-top: 10px;
     }
     footer {
       margin-top: 50px;
@@ -101,30 +97,35 @@
   </nav>
   <main>
     <h2>Скрипты</h2>
-    <ul id="scripts-list"></ul>
-    <p class="note">⚠️ Скрипты могут быть зашифрованы или защищены — не раскрываются в исходном коде.</p>
+
+    <!-- Первый скрипт -->
+    <div class="script-block">
+      <h3>Скрипт: Пример автокликера</h3>
+      <pre>
+while true do
+  clickMouse()
+  wait(0.01)
+end
+      </pre>
+      <p class="note">Для Roblox или AutoHotkey — базовый автокликер</p>
+    </div>
+
+    <!-- Второй скрипт -->
+    <div class="script-block">
+      <h3>Скрипт: Телепорт на игрока</h3>
+      <pre>
+local player = game.Players.LocalPlayer
+local target = game.Players:FindFirstChild("Username")
+if target then
+  player.Character.HumanoidRootPart.CFrame = target.Character.HumanoidRootPart.CFrame
+end
+      </pre>
+      <p class="note">Замените "Username" на ник игрока</p>
+    </div>
+
+    <!-- Добавляй свои скрипты ниже -->
+    
   </main>
   <footer>© 2025 GodScripts. Все права защищены.</footer>
-
-  <script>
-    // Добавляй сюда свои скрипты
-    const scripts = [
-      { name: 'Скрипт для Roblox', file: 'scripts/roblox1.lua' },
-      { name: 'Script: AutoClicker', file: 'scripts/autoclick.js' },
-      // Добавляй новые ниже
-    ];
-
-    const list = document.getElementById('scripts-list');
-    scripts.forEach(script => {
-      const li = document.createElement('li');
-      const a = document.createElement('a');
-      a.href = script.file;
-      a.textContent = script.name;
-      a.className = 'script-link';
-      a.target = '_blank';
-      li.appendChild(a);
-      list.appendChild(li);
-    });
-  </script>
 </body>
 </html>
