@@ -5,37 +5,46 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>GodScripts — Скрипты</title>
   <style>
+    :root {
+      --bg: #0e1015;
+      --bg-light: #1a1d25;
+      --accent: #00d4ff;
+      --text: #f1f1f1;
+      --gray: #999;
+    }
+    * {
+      box-sizing: border-box;
+    }
     body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background: #1e1e2f;
-      color: #f0f0f5;
       margin: 0;
-      padding: 0;
+      background: var(--bg);
+      font-family: 'Segoe UI', sans-serif;
+      color: var(--text);
     }
     header {
-      background-color: #282c34;
+      background: var(--bg-light);
       padding: 20px;
       text-align: center;
       font-size: 2em;
-      font-weight: bold;
-      letter-spacing: 2px;
-      color: #61dafb;
+      color: var(--accent);
+      box-shadow: 0 0 10px #00000066;
     }
     nav {
-      background-color: #202333;
-      padding: 10px 0;
-      text-align: center;
+      background: #111;
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+      padding: 15px;
+      border-bottom: 1px solid #222;
     }
     nav a {
-      color: #61dafb;
+      color: var(--text);
       text-decoration: none;
-      margin: 0 15px;
-      font-weight: 600;
-      font-size: 1.1em;
+      font-weight: bold;
       transition: color 0.3s;
     }
     nav a:hover {
-      color: #21a1f1;
+      color: var(--accent);
     }
     main {
       max-width: 900px;
@@ -43,40 +52,44 @@
       padding: 0 20px;
     }
     h2 {
-      color: #61dafb;
-      border-bottom: 2px solid #61dafb;
-      padding-bottom: 10px;
+      color: var(--accent);
+      font-size: 1.8em;
       margin-bottom: 20px;
     }
     ul {
       list-style: none;
-      padding-left: 0;
+      padding: 0;
     }
     li {
-      background-color: #2a2e44;
+      background: var(--bg-light);
+      padding: 15px 20px;
       margin-bottom: 15px;
-      padding: 15px;
-      border-radius: 8px;
-      transition: background-color 0.3s;
+      border-left: 5px solid var(--accent);
+      border-radius: 6px;
+      transition: background 0.3s;
     }
     li:hover {
-      background-color: #39416f;
+      background: #232834;
     }
     a.script-link {
-      color: #f0f0f5;
-      font-weight: 600;
+      color: var(--text);
+      font-size: 1.1em;
+      font-weight: bold;
       text-decoration: none;
     }
     a.script-link:hover {
       text-decoration: underline;
     }
-    footer {
-      text-align: center;
-      padding: 15px;
-      color: #555;
+    .note {
       font-size: 0.9em;
-      border-top: 1px solid #333;
+      color: var(--gray);
+    }
+    footer {
       margin-top: 50px;
+      text-align: center;
+      font-size: 0.9em;
+      color: #444;
+      padding: 20px;
     }
   </style>
 </head>
@@ -85,29 +98,27 @@
   <nav>
     <a href="index.html">Главная</a>
     <a href="scripts.html">Скрипты</a>
-    <a href="about.html">О проекте</a>
   </nav>
   <main>
-    <h2>Доступные скрипты</h2>
-    <ul id="scripts-list">
-      <!-- Здесь будет список скриптов -->
-    </ul>
+    <h2>Скрипты</h2>
+    <ul id="scripts-list"></ul>
+    <p class="note">⚠️ Скрипты могут быть зашифрованы или защищены — не раскрываются в исходном коде.</p>
   </main>
   <footer>© 2025 GodScripts. Все права защищены.</footer>
 
   <script>
-    // Пример скриптов — добавляй свои сюда
+    // Добавляй сюда свои скрипты
     const scripts = [
-      { name: 'Пример скрипта 1', link: 'scripts/example1.js' },
-      { name: 'Пример скрипта 2', link: 'scripts/example2.js' },
-      // Добавляй новые скрипты сюда
+      { name: 'Скрипт для Roblox', file: 'scripts/roblox1.lua' },
+      { name: 'Script: AutoClicker', file: 'scripts/autoclick.js' },
+      // Добавляй новые ниже
     ];
 
     const list = document.getElementById('scripts-list');
     scripts.forEach(script => {
       const li = document.createElement('li');
       const a = document.createElement('a');
-      a.href = script.link;
+      a.href = script.file;
       a.textContent = script.name;
       a.className = 'script-link';
       a.target = '_blank';
