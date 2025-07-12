@@ -5,56 +5,67 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>GodScripts — Главная</title>
   <style>
+    :root {
+      --bg: #0e1015;
+      --bg-light: #1a1d25;
+      --accent: #00d4ff;
+      --text: #f1f1f1;
+      --gray: #777;
+    }
+    * {
+      box-sizing: border-box;
+    }
     body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background: #1e1e2f;
-      color: #f0f0f5;
       margin: 0;
-      padding: 0;
+      background: var(--bg);
+      font-family: 'Segoe UI', sans-serif;
+      color: var(--text);
     }
     header {
-      background-color: #282c34;
+      background: var(--bg-light);
       padding: 20px;
       text-align: center;
       font-size: 2em;
-      font-weight: bold;
-      letter-spacing: 2px;
-      color: #61dafb;
+      color: var(--accent);
+      box-shadow: 0 0 10px #00000066;
     }
     nav {
-      background-color: #202333;
-      padding: 10px 0;
-      text-align: center;
+      background: #111;
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+      padding: 15px;
+      border-bottom: 1px solid #222;
     }
     nav a {
-      color: #61dafb;
+      color: var(--text);
       text-decoration: none;
-      margin: 0 15px;
-      font-weight: 600;
-      font-size: 1.1em;
+      font-weight: bold;
       transition: color 0.3s;
     }
     nav a:hover {
-      color: #21a1f1;
+      color: var(--accent);
     }
     main {
-      max-width: 900px;
-      margin: 40px auto;
-      padding: 0 20px;
+      padding: 40px 20px;
+      max-width: 800px;
+      margin: auto;
+      text-align: center;
     }
-    h2 {
-      color: #61dafb;
-      border-bottom: 2px solid #61dafb;
-      padding-bottom: 10px;
-      margin-bottom: 20px;
+    h1 {
+      font-size: 2em;
+      color: var(--accent);
+    }
+    p {
+      font-size: 1.2em;
+      color: var(--gray);
     }
     footer {
-      text-align: center;
-      padding: 15px;
-      color: #555;
-      font-size: 0.9em;
-      border-top: 1px solid #333;
       margin-top: 50px;
+      text-align: center;
+      font-size: 0.9em;
+      color: #444;
+      padding: 20px;
     }
   </style>
 </head>
@@ -63,12 +74,11 @@
   <nav>
     <a href="index.html">Главная</a>
     <a href="scripts.html">Скрипты</a>
-    <a href="about.html">О проекте</a>
   </nav>
   <main>
-    <h2>Добро пожаловать на GodScripts!</h2>
-    <p>Здесь ты найдёшь полезные и интересные скрипты.</p>
-    <p>Перейди в раздел <a href="scripts.html">Скрипты</a>, чтобы посмотреть доступные.</p>
+    <h1>Добро пожаловать!</h1>
+    <p>GodScripts — это место, где ты найдешь эксклюзивные и полезные скрипты.</p>
+    <p><a href="scripts.html" style="color: var(--accent); text-decoration: underline;">Перейти к скриптам →</a></p>
   </main>
   <footer>© 2025 GodScripts. Все права защищены.</footer>
 </body>
