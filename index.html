@@ -3,134 +3,98 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>GodScripts — Главная</title>
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600&display=swap" rel="stylesheet" />
+  <title>Downloader</title>
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
     body {
-      background: #050510;
-      color: #00fff2;
-      font-family: 'Orbitron', sans-serif;
-      overflow-x: hidden;
+      font-family: Arial, sans-serif;
+      max-width: 500px;
+      margin: 40px auto;
+      padding: 0 20px;
     }
-
-    header {
-      text-align: center;
-      padding: 80px 20px 40px;
-      font-size: 3rem;
-      text-transform: uppercase;
-      letter-spacing: 4px;
-      background: linear-gradient(to right, #00fff2, #0066ff);
-      background-clip: text;
-      -webkit-background-clip: text;
-      color: transparent;
-      text-shadow: 0 0 10px #00fff288;
-      animation: glowText 3s infinite alternate;
+    label, input, button {
+      font-size: 16px;
     }
-
-    @keyframes glowText {
-      from { text-shadow: 0 0 5px #00fff255; }
-      to { text-shadow: 0 0 20px #00fff2cc; }
+    input {
+      width: 70%;
+      padding: 8px;
+      margin-right: 10px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
     }
-
-    nav {
-      text-align: center;
-      background: #0a0a1d;
-      padding: 15px;
-      box-shadow: 0 0 10px #00fff233;
+    button {
+      padding: 9px 16px;
+      background-color: #007bff;
+      border: none;
+      color: white;
+      border-radius: 4px;
+      cursor: pointer;
     }
-
-    nav a {
-      color: #00fff2;
-      margin: 0 25px;
-      text-decoration: none;
+    button:disabled {
+      background-color: #aaa;
+      cursor: not-allowed;
+    }
+    #status {
+      margin-top: 15px;
       font-weight: bold;
-      font-size: 1.2em;
-      position: relative;
-      transition: 0.3s;
     }
-
-    nav a:hover {
-      color: #ffffff;
-      text-shadow: 0 0 8px #00fff2;
-    }
-
-    main {
-      text-align: center;
-      padding: 60px 20px;
-    }
-
-    main h1 {
-      font-size: 2.2em;
-      margin-bottom: 20px;
-      color: #00f6ff;
-      text-shadow: 0 0 15px #00f6ff66;
-      animation: fadeIn 1.5s ease-in;
-    }
-
-    main p {
-      font-size: 1.1em;
-      color: #aaa;
-      max-width: 600px;
-      margin: 0 auto 30px;
-      line-height: 1.6;
-      animation: fadeIn 2s ease-in;
-    }
-
-    .btn {
-      display: inline-block;
-      margin-top: 30px;
-      padding: 12px 25px;
-      background: #00fff2;
-      color: #000;
-      border-radius: 8px;
-      font-weight: bold;
-      font-size: 1em;
-      text-decoration: none;
-      box-shadow: 0 0 12px #00fff2aa;
-      transition: 0.3s;
-    }
-
-    .btn:hover {
-      background: #0ff;
-      box-shadow: 0 0 20px #00fff2cc;
-    }
-
-    footer {
-      text-align: center;
-      color: #444;
-      margin-top: 80px;
-      padding: 30px 20px;
-      font-size: 0.9em;
-    }
-
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(20px); }
-      to { opacity: 1; transform: translateY(0); }
+    #supported {
+      margin-top: 40px;
+      font-style: italic;
+      color: #555;
     }
   </style>
 </head>
 <body>
 
-  <header>GodScripts</header>
+  <h2>Музыкальный Downloader</h2>
 
-  <nav>
-    <a href="index.html">Главная</a>
-    <a href="scripts.html">Скрипты</a>
-  </nav>
+  <label for="link">Введите ссылку:</label><br />
+  <input type="text" id="link" placeholder="https://..." />
+  <button id="downloadBtn" disabled>Download</button>
 
-  <main>
-    <h1>Добро пожаловать на GodScripts</h1>
-    <p>Здесь ты найдёшь крутые, кастомные, уникальные скрипты для Roblox, AHK и не только. Всё делаю вручную и с душой. Не копируй — используй с умом.</p>
-    <a href="scripts.html" class="btn">🔥 Перейти к скриптам</a>
-  </main>
+  <div id="status"></div>
 
-  <footer>© 2025 GodScripts — Сделано в тени 😈</footer>
+  <div id="supported">Supported links: SoundCloud, Newgrounds, YouTube</div>
+
+<script>
+  const input = document.getElementById('link');
+  const button = document.getElementById('downloadBtn');
+  const status = document.getElementById('status');
+
+  function checkSupport(url) {
+    // Регулярки для проверки
+    const patterns = [
+      /^(https?:\/\/)?(www\.)?soundcloud\.com\/.+/,
+      /^(https?:\/\/)?(www\.)?newgrounds\.com\/audio\/listen\/.+/,
+      /^(https?:\/\/)?(www\.)?(youtube\.com|youtu\.be)\/.+/
+    ];
+    return patterns.some(p => p.test(url));
+  }
+
+  input.addEventListener('input', () => {
+    const url = input.value.trim();
+    if (checkSupport(url)) {
+      status.textContent = 'Ссылка поддерживается ✅';
+      button.disabled = false;
+    } else if (url.length > 0) {
+      status.textContent = 'Ссылка не поддерживается ❌';
+      button.disabled = true;
+    } else {
+      status.textContent = '';
+      button.disabled = true;
+    }
+  });
+
+  button.addEventListener('click', () => {
+    const url = input.value.trim();
+    if (!checkSupport(url)) {
+      alert('Ссылка не поддерживается');
+      return;
+    }
+    alert('Начинаем скачивание для:\n' + url);
+    // Здесь можно добавить логику отправки ссылки на сервер
+  });
+</script>
 
 </body>
 </html>
