@@ -1,100 +1,130 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Downloader</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Robozy — Roblox Market</title>
   <style>
     body {
-      font-family: Arial, sans-serif;
-      max-width: 500px;
-      margin: 40px auto;
-      padding: 0 20px;
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #f2f3f5;
+      color: #333;
     }
-    label, input, button {
-      font-size: 16px;
-    }
-    input {
-      width: 70%;
-      padding: 8px;
-      margin-right: 10px;
-      border: 1px solid #ccc;
-      border-radius: 4px;
-    }
-    button {
-      padding: 9px 16px;
-      background-color: #007bff;
-      border: none;
+
+    header {
+      background-color: #23272a;
       color: white;
-      border-radius: 4px;
-      cursor: pointer;
-    }
-    button:disabled {
-      background-color: #aaa;
-      cursor: not-allowed;
-    }
-    #status {
-      margin-top: 15px;
+      padding: 20px;
+      text-align: center;
+      font-size: 28px;
       font-weight: bold;
+      letter-spacing: 1px;
     }
-    #supported {
-      margin-top: 40px;
-      font-style: italic;
-      color: #555;
+
+    nav {
+      display: flex;
+      justify-content: center;
+      background-color: #2c2f33;
+    }
+
+    nav a {
+      padding: 15px 30px;
+      color: white;
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    nav a:hover {
+      background-color: #40444b;
+    }
+
+    section {
+      padding: 40px 20px;
+      max-width: 1000px;
+      margin: auto;
+    }
+
+    h2 {
+      margin-bottom: 20px;
+      border-bottom: 2px solid #ddd;
+      padding-bottom: 10px;
+    }
+
+    .card {
+      background: white;
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.08);
+      margin-bottom: 20px;
+    }
+
+    .card img {
+      max-width: 100px;
+      float: left;
+      margin-right: 20px;
+      border-radius: 8px;
+    }
+
+    .card h3 {
+      margin: 0 0 10px;
+    }
+
+    .card p {
+      margin: 0;
     }
   </style>
 </head>
 <body>
+  <header>
+    🧱 Robozy — Roblox Магазин
+  </header>
 
-  <h2>Музыкальный Downloader</h2>
+  <nav>
+    <a href="#products">🛍️ Товары</a>
+    <a href="#sellers">👥 Продавцы</a>
+    <a href="#reviews">⭐ Отзывы</a>
+  </nav>
 
-  <label for="link">Введите ссылку:</label><br />
-  <input type="text" id="link" placeholder="https://..." />
-  <button id="downloadBtn" disabled>Download</button>
+  <section id="products">
+    <h2>🛒 Товары</h2>
+    <div class="card">
+      <img src="https://tr.rbxcdn.com/28c7ab5aa70c1ed73ac3e9fc7edebc0f/420/420/Hat/Png" />
+      <h3>Red Valk Hat</h3>
+      <p>Цена: 1500₽ • Продавец: @SuperTrader</p>
+    </div>
 
-  <div id="status"></div>
+    <div class="card">
+      <img src="https://tr.rbxcdn.com/eac9165d64687952c7b1b0ed7ffcb42f/420/420/Hat/Png" />
+      <h3>Rainbow Top Hat</h3>
+      <p>Цена: 950₽ • Продавец: @ItemMaster</p>
+    </div>
+  </section>
 
-  <div id="supported">Supported links: SoundCloud, Newgrounds, YouTube</div>
+  <section id="sellers">
+    <h2>👑 Лучшие продавцы</h2>
+    <div class="card">
+      <h3>@SuperTrader</h3>
+      <p>Продано: 125 товаров • Рейтинг: ⭐⭐⭐⭐☆ (4.6)</p>
+    </div>
 
-<script>
-  const input = document.getElementById('link');
-  const button = document.getElementById('downloadBtn');
-  const status = document.getElementById('status');
+    <div class="card">
+      <h3>@ItemMaster</h3>
+      <p>Продано: 87 товаров • Рейтинг: ⭐⭐⭐⭐⭐ (5.0)</p>
+    </div>
+  </section>
 
-  function checkSupport(url) {
-    // Регулярки для проверки
-    const patterns = [
-      /^(https?:\/\/)?(www\.)?soundcloud\.com\/.+/,
-      /^(https?:\/\/)?(www\.)?newgrounds\.com\/audio\/listen\/.+/,
-      /^(https?:\/\/)?(www\.)?(youtube\.com|youtu\.be)\/.+/
-    ];
-    return patterns.some(p => p.test(url));
-  }
+  <section id="reviews">
+    <h2>💬 Отзывы</h2>
+    <div class="card">
+      <h3>Игрок: BaconMaster123</h3>
+      <p>«Отличный магазин! Получил шапку за 10 минут. Рекомендую 👍»</p>
+    </div>
 
-  input.addEventListener('input', () => {
-    const url = input.value.trim();
-    if (checkSupport(url)) {
-      status.textContent = 'Ссылка поддерживается ✅';
-      button.disabled = false;
-    } else if (url.length > 0) {
-      status.textContent = 'Ссылка не поддерживается ❌';
-      button.disabled = true;
-    } else {
-      status.textContent = '';
-      button.disabled = true;
-    }
-  });
-
-  button.addEventListener('click', () => {
-    const url = input.value.trim();
-    if (!checkSupport(url)) {
-      alert('Ссылка не поддерживается');
-      return;
-    }
-    alert('Начинаем скачивание для:\n' + url);
-    // Здесь можно добавить логику отправки ссылки на сервер
-  });
-</script>
-
+    <div class="card">
+      <h3>Игрок: BloxyGirl</h3>
+      <p>«Качество супер, всё работает, доверяю Robozy!»</p>
+    </div>
+  </section>
 </body>
 </html>
