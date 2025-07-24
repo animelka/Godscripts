@@ -1,246 +1,209 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-  <meta charset="UTF-8">
-  <title>Robozy Трейд-Магазин</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>RobozyTrade — Лучший трейд-магазин</title>
   <style>
-    * {
-      box-sizing: border-box;
-    }
-
+    * {margin: 0; padding: 0; box-sizing: border-box;}
     body {
-      margin: 0;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background-color: #f0f2f5;
-      color: #333;
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #0f0f0f;
+      color: #fff;
     }
-
+    a {color: #00ffff; text-decoration: none;}
+    a:hover {text-decoration: underline;}
     header {
-      background: linear-gradient(135deg, #4b6cb7, #182848);
-      color: white;
+      background: linear-gradient(135deg, #8b00ff, #00ffff);
       padding: 30px 20px;
       text-align: center;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    }
+    header h1 {
+      font-size: 2.5rem;
+      background: linear-gradient(90deg, #00ffee, #a800ff);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
     }
 
-    h1 {
-      margin: 0;
-      font-size: 32px;
-    }
-
-    main {
-      max-width: 800px;
-      margin: 30px auto;
-      padding: 0 20px;
+    header p {
+      margin-top: 10px;
+      font-size: 1.2rem;
+      color: #ddd;
     }
 
     section {
-      background: white;
-      margin-bottom: 30px;
-      padding: 25px;
-      border-radius: 15px;
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+      max-width: 1000px;
+      margin: 40px auto;
+      padding: 0 20px;
     }
 
     h2 {
-      margin-top: 0;
-      font-size: 22px;
+      font-size: 2rem;
+      margin-bottom: 20px;
+      color: #00ffe0;
     }
 
-    select {
+    .game-select, .seller-list, .reviews {
+      background: #1c1c1c;
+      border-radius: 15px;
+      padding: 25px;
+      margin-bottom: 40px;
+      border: 1px solid #333;
+    }
+
+    .game-select button {
+      display: block;
       width: 100%;
-      padding: 12px;
-      margin-top: 10px;
-      font-size: 16px;
-      border-radius: 8px;
-      border: 1px solid #ccc;
+      padding: 15px;
+      margin: 10px 0;
+      font-size: 1rem;
+      background: #262626;
+      border: 1px solid #444;
+      color: #00ffff;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: 0.3s;
     }
 
-    .game-items {
+    .game-select button:hover {
+      background: #333;
+    }
+
+    .product-list {
+      display: none;
       margin-top: 20px;
     }
 
-    .item-box {
-      position: relative;
-      display: inline-block;
-      width: 100%;
-      max-width: 500px;
+    .product {
+      background: #111;
+      border: 1px solid #333;
       border-radius: 12px;
-      overflow: hidden;
+      padding: 20px;
+      margin-bottom: 15px;
+    }
+
+    .product-title {
+      font-size: 1.3rem;
       margin-bottom: 10px;
+      color: #ff66ff;
     }
 
-    .item-box img {
-      width: 100%;
-      display: block;
-      border-radius: 12px;
+    .product-details {
+      margin-bottom: 15px;
+      line-height: 1.5;
+      color: #ccc;
     }
 
-    .question-mark {
-      position: absolute;
-      top: 10px;
-      right: 10px;
-      background: rgba(0, 0, 0, 0.7);
-      color: white;
-      font-size: 20px;
-      width: 28px;
-      height: 28px;
-      text-align: center;
-      line-height: 28px;
-      border-radius: 50%;
-      cursor: pointer;
-    }
-
-    .write-button {
+    .contact-button {
       display: inline-block;
-      margin-top: 10px;
-      background: #4b6cb7;
-      color: white;
       padding: 10px 20px;
-      border-radius: 8px;
-      text-decoration: none;
+      background: linear-gradient(135deg, #00f2fe, #4facfe);
+      border-radius: 30px;
+      color: black;
       font-weight: bold;
       transition: background 0.3s;
     }
 
-    .write-button:hover {
-      background: #3b5998;
+    .contact-button:hover {
+      background: linear-gradient(135deg, #a1ffce, #faffd1);
     }
 
     .seller {
-      margin: 12px 0;
-      font-size: 16px;
+      margin-bottom: 15px;
     }
 
-    .seller a {
-      color: #4b6cb7;
-      text-decoration: none;
+    .seller span {
+      display: block;
+      font-weight: bold;
+      color: #00ffee;
     }
 
-    .seller a:hover {
-      text-decoration: underline;
+    .reviews a {
+      color: #00ffff;
+      font-weight: bold;
     }
 
-    .popup {
-      display: none;
-      position: fixed;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      background: white;
-      border: 2px solid #4b6cb7;
-      border-radius: 10px;
+    footer {
+      text-align: center;
       padding: 20px;
-      z-index: 1000;
-      box-shadow: 0 6px 16px rgba(0,0,0,0.2);
-    }
-
-    .popup p {
-      margin: 0;
-      font-size: 16px;
-    }
-
-    .popup-close {
-      margin-top: 15px;
-      background: #4b6cb7;
-      color: white;
-      border: none;
-      padding: 8px 12px;
-      border-radius: 6px;
-      cursor: pointer;
-    }
-
-    .overlay {
-      display: none;
-      position: fixed;
-      top: 0; left: 0; right: 0; bottom: 0;
-      background: rgba(0, 0, 0, 0.5);
-      z-index: 900;
+      background: #0a0a0a;
+      font-size: 0.9rem;
+      color: #666;
     }
   </style>
 </head>
 <body>
 
-  <header>
-    <h1>🛍️ Robozy Трейд-Магазин</h1>
-  </header>
+<header>
+  <h1>RobozyTrade</h1>
+  <p>Лучший трейд-магазин для Roblox-игр</p>
+</header>
 
-  <main>
-    <section>
-      <h2>Выберите игру:</h2>
-      <select id="gameSelect" onchange="showItems()">
-        <option value="">-- Выберите --</option>
-        <option value="garden">Grow a Garden</option>
-        <option value="mm2">Murder Mystery 2 (MM2)</option>
-        <option value="brainrot">Steal a Brainrot</option>
-      </select>
+<section class="game-select">
+  <h2>🛍️ Товары</h2>
+  <p>Выберите игру:</p>
+  <button onclick="showProducts('garden')">Grow a Garden</button>
+  <button onclick="showProducts('mm2')">Murder Mystery 2 (MM2)</button>
+  <button onclick="showProducts('brainrot')">Steal a Brainrot</button>
 
-      <div id="items" class="game-items"></div>
-    </section>
-
-    <section>
-      <h2>🧑‍💼 Продавцы</h2>
-      <div class="seller">Animelka<br>Telegram: <a href="https://t.me/animelkaaxd" target="_blank">@animelkaaxd</a></div>
-      <div class="seller">Leadjeans<br>Telegram: <a href="https://t.me/Leadjens" target="_blank">@Leadjens</a></div>
-    </section>
-
-    <section>
-      <h2>💬 Отзывы</h2>
-      <p>Все отзывы и дополнительная информация публикуются тут:</p>
-      <p><a href="https://t.me/robozy" target="_blank">👉 t.me/robozy</a></p>
-    </section>
-  </main>
-
-  <div class="overlay" id="overlay" onclick="closePopup()"></div>
-  <div class="popup" id="popup">
-    <p><strong>Продавец:</strong> Animelka<br>
-    <strong>Возможен обмен на другие игры:</strong> Да</p>
-    <button class="popup-close" onclick="closePopup()">Закрыть</button>
+  <div id="garden" class="product-list">
+    <div class="product">
+      <div class="product-title">Pack Bee</div>
+      <div class="product-details">
+        <strong>Интересует:</strong> Grow a Garden, MM2, Steal a Brainrot, другое<br>
+        <strong>Продавец:</strong> Animelka<br>
+        <strong>В наличии:</strong> 1
+      </div>
+      <a class="contact-button" href="https://t.me/animelkaaxd" target="_blank">Написать</a>
+    </div>
   </div>
 
-  <script>
-    function showItems() {
-      const selectedGame = document.getElementById("gameSelect").value;
-      const itemsDiv = document.getElementById("items");
-      itemsDiv.innerHTML = "";
+  <div id="mm2" class="product-list">
+    <p style="color:#888;">Пока нет товаров в этой категории.</p>
+  </div>
 
-      if (selectedGame === "brainrot") {
-        const box = document.createElement("div");
-        box.className = "item-box";
+  <div id="brainrot" class="product-list">
+    <div class="product">
+      <div class="product-title">La Vacca Saturno Saturnita</div>
+      <div class="product-details">
+        <strong>Интересует:</strong> Grow a Garden, MM2, Steal a Brainrot, другое<br>
+        <strong>Продавец:</strong> Animelka<br>
+        <strong>В наличии:</strong> 1
+      </div>
+      <a class="contact-button" href="https://t.me/animelkaaxd" target="_blank">Написать</a>
+    </div>
+  </div>
+</section>
 
-        const img = document.createElement("img");
-        img.src = "https://static.wikia.nocookie.net/stealabr/images/1/1e/La_Vaca.png/revision/latest?cb=20250716224648";
-        img.alt = "Lavacca Saturno Saturnita";
+<section class="seller-list">
+  <h2>🧑‍💼 Продавцы</h2>
+  <div class="seller">
+    <span>Animelka</span>
+    Telegram: <a href="https://t.me/animelkaaxd" target="_blank">@animelkaaxd</a>
+  </div>
+  <div class="seller">
+    <span>Leadjeans</span>
+    Telegram: <a href="https://t.me/Leadjens" target="_blank">@Leadjens</a>
+  </div>
+</section>
 
-        const qm = document.createElement("div");
-        qm.className = "question-mark";
-        qm.innerText = "?";
-        qm.onclick = showPopup;
+<section class="reviews">
+  <h2>💬 Отзывы</h2>
+  <p>Все отзывы и дополнительная информация публикуются тут:</p>
+  <p>👉 <a href="https://t.me/robozy" target="_blank">t.me/robozy</a></p>
+</section>
 
-        box.appendChild(img);
-        box.appendChild(qm);
+<footer>
+  &copy; 2025 RobozyTrade — Все права защищены
+</footer>
 
-        const write = document.createElement("a");
-        write.href = "https://t.me/animelkaaxd";
-        write.target = "_blank";
-        write.className = "write-button";
-        write.innerText = "написать";
-
-        itemsDiv.appendChild(box);
-        itemsDiv.appendChild(write);
-      }
-    }
-
-    function showPopup() {
-      document.getElementById("popup").style.display = "block";
-      document.getElementById("overlay").style.display = "block";
-    }
-
-    function closePopup() {
-      document.getElementById("popup").style.display = "none";
-      document.getElementById("overlay").style.display = "none";
-    }
-  </script>
+<script>
+  function showProducts(id) {
+    const lists = document.querySelectorAll('.product-list');
+    lists.forEach(list => list.style.display = 'none');
+    document.getElementById(id).style.display = 'block';
+  }
+</script>
 
 </body>
 </html>
