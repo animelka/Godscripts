@@ -40,17 +40,11 @@
       padding: 25px;
       border-radius: 15px;
       box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
-      transition: box-shadow 0.3s ease;
-    }
-
-    section:hover {
-      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
     }
 
     h2 {
       margin-top: 0;
       font-size: 22px;
-      color: #222;
     }
 
     select {
@@ -60,26 +54,52 @@
       font-size: 16px;
       border-radius: 8px;
       border: 1px solid #ccc;
-      transition: border-color 0.3s;
-    }
-
-    select:focus {
-      outline: none;
-      border-color: #4b6cb7;
     }
 
     .game-items {
       margin-top: 20px;
     }
 
-    .item {
-      padding: 10px 15px;
-      border-bottom: 1px solid #eee;
-      font-size: 16px;
+    .item-image-box {
+      position: relative;
+      display: inline-block;
+      max-width: 100%;
     }
 
-    .item:last-child {
-      border-bottom: none;
+    .item-image-box img {
+      width: 100%;
+      border-radius: 12px;
+      display: block;
+    }
+
+    .question-mark {
+      position: absolute;
+      top: 8px;
+      right: 12px;
+      background: rgba(0, 0, 0, 0.7);
+      color: white;
+      font-size: 20px;
+      width: 28px;
+      height: 28px;
+      text-align: center;
+      line-height: 28px;
+      border-radius: 50%;
+      cursor: pointer;
+    }
+
+    .item-title {
+      margin-top: 10px;
+      font-size: 18px;
+      text-align: center;
+    }
+
+    .item-title a {
+      text-decoration: none;
+      color: #4b6cb7;
+    }
+
+    .item-title a:hover {
+      text-decoration: underline;
     }
 
     .seller {
@@ -96,9 +116,41 @@
       text-decoration: underline;
     }
 
-    a {
-      color: #4b6cb7;
-      font-weight: bold;
+    .popup {
+      display: none;
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: white;
+      border: 2px solid #4b6cb7;
+      border-radius: 10px;
+      padding: 20px;
+      z-index: 1000;
+      box-shadow: 0 6px 16px rgba(0,0,0,0.2);
+    }
+
+    .popup p {
+      margin: 0;
+      font-size: 16px;
+    }
+
+    .popup-close {
+      margin-top: 15px;
+      background: #4b6cb7;
+      color: white;
+      border: none;
+      padding: 8px 12px;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+
+    .overlay {
+      display: none;
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(0, 0, 0, 0.5);
+      z-index: 900;
     }
   </style>
 </head>
@@ -134,41 +186,51 @@
     </section>
   </main>
 
-  <script>
-    const items = {
-      garden: [
-        "🌱 Семена моркови",
-        "💧 Удобрение x10",
-        "💎 VIP-доступ",
-        "👩‍🌾 Аккаунт с прокачкой"
-      ],
-      mm2: [
-        "🔪 Нож 'Godly'",
-        "🎁 Рандомный подарок",
-        "💰 5000 монет",
-        "🧑‍⚖️ Аккаунт с 50 лвл"
-      ],
-      brainrot: [
-        "🧠 Brain Token x100",
-        "👾 Скин 'Glitched'",
-        "⚙️ Модерский доступ",
-        "📱 Аккаунт с Brain Level 10"
-      ]
-    };
+  <div class="overlay" id="overlay" onclick="closePopup()"></div>
+  <div class="popup" id="popup">
+    <p><strong>Продавец:</strong> Animelka<br>
+    <strong>Возможен обмен на другие игры:</strong> Да</p>
+    <button class="popup-close" onclick="closePopup()">Закрыть</button>
+  </div>
 
+  <script>
     function showItems() {
       const selectedGame = document.getElementById("gameSelect").value;
       const itemsDiv = document.getElementById("items");
       itemsDiv.innerHTML = "";
 
-      if (items[selectedGame]) {
-        items[selectedGame].forEach(item => {
-          const div = document.createElement("div");
-          div.className = "item";
-          div.textContent = item;
-          itemsDiv.appendChild(div);
-        });
+      if (selectedGame === "brainrot") {
+        const box = document.createElement("div");
+        box.className = "item-image-box";
+
+        const img = document.createElement("img");
+        img.src = "https://static.wikia.nocookie.net/stealabr/images/1/1e/La_Vaca.png/revision/latest?cb=20250716224648";
+        img.alt = "Lavacca Saturno Saturnita";
+
+        const qm = document.createElement("div");
+        qm.className = "question-mark";
+        qm.innerText = "?";
+        qm.onclick = showPopup;
+
+        const title = document.createElement("div");
+        title.className = "item-title";
+        title.innerHTML = `<a href="https://t.me/animelkaaxd" target="_blank">Lavacca Saturno Saturnita</a>`;
+
+        box.appendChild(img);
+        box.appendChild(qm);
+        itemsDiv.appendChild(box);
+        itemsDiv.appendChild(title);
       }
+    }
+
+    function showPopup() {
+      document.getElementById("popup").style.display = "block";
+      document.getElementById("overlay").style.display = "block";
+    }
+
+    function closePopup() {
+      document.getElementById("popup").style.display = "none";
+      document.getElementById("overlay").style.display = "none";
     }
   </script>
 
