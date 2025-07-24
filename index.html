@@ -60,22 +60,26 @@
       margin-top: 20px;
     }
 
-    .item-image-box {
+    .item-box {
       position: relative;
       display: inline-block;
-      max-width: 100%;
+      width: 100%;
+      max-width: 500px;
+      border-radius: 12px;
+      overflow: hidden;
+      margin-bottom: 10px;
     }
 
-    .item-image-box img {
+    .item-box img {
       width: 100%;
-      border-radius: 12px;
       display: block;
+      border-radius: 12px;
     }
 
     .question-mark {
       position: absolute;
-      top: 8px;
-      right: 12px;
+      top: 10px;
+      right: 10px;
       background: rgba(0, 0, 0, 0.7);
       color: white;
       font-size: 20px;
@@ -87,19 +91,20 @@
       cursor: pointer;
     }
 
-    .item-title {
+    .write-button {
+      display: inline-block;
       margin-top: 10px;
-      font-size: 18px;
-      text-align: center;
-    }
-
-    .item-title a {
+      background: #4b6cb7;
+      color: white;
+      padding: 10px 20px;
+      border-radius: 8px;
       text-decoration: none;
-      color: #4b6cb7;
+      font-weight: bold;
+      transition: background 0.3s;
     }
 
-    .item-title a:hover {
-      text-decoration: underline;
+    .write-button:hover {
+      background: #3b5998;
     }
 
     .seller {
@@ -190,7 +195,6 @@
   <div class="popup" id="popup">
     <p><strong>Продавец:</strong> Animelka<br>
     <strong>Возможен обмен на другие игры:</strong> Да</p>
-<strong>Интересует:</strong> Mm2,Steal a brainrot,Grow a garden</p>
     <button class="popup-close" onclick="closePopup()">Закрыть</button>
   </div>
 
@@ -202,7 +206,7 @@
 
       if (selectedGame === "brainrot") {
         const box = document.createElement("div");
-        box.className = "item-image-box";
+        box.className = "item-box";
 
         const img = document.createElement("img");
         img.src = "https://static.wikia.nocookie.net/stealabr/images/1/1e/La_Vaca.png/revision/latest?cb=20250716224648";
@@ -213,14 +217,17 @@
         qm.innerText = "?";
         qm.onclick = showPopup;
 
-        const title = document.createElement("div");
-        title.className = "item-title";
-        title.innerHTML = `<a href="https://t.me/animelkaaxd" target="_blank">Lavacca Saturno Saturnita</a>`;
-
         box.appendChild(img);
         box.appendChild(qm);
+
+        const write = document.createElement("a");
+        write.href = "https://t.me/animelkaaxd";
+        write.target = "_blank";
+        write.className = "write-button";
+        write.innerText = "написать";
+
         itemsDiv.appendChild(box);
-        itemsDiv.appendChild(title);
+        itemsDiv.appendChild(write);
       }
     }
 
