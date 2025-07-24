@@ -2,116 +2,124 @@
 <html lang="ru">
 <head>
   <meta charset="UTF-8">
-  <title>Магазин Robozy</title>
+  <title>Robozy Трейд-Магазин</title>
   <style>
     body {
       font-family: Arial, sans-serif;
-      background: #121212;
-      color: white;
+      background-color: #f6f6f6;
       margin: 0;
       padding: 0;
     }
-
-    .container {
-      max-width: 900px;
-      margin: 50px auto;
-      background: #1e1e1e;
-      border-radius: 10px;
+    header {
+      background-color: #2c3e50;
+      color: white;
       padding: 20px;
-      box-shadow: 0 0 20px #00c8ff55;
-    }
-
-    h1 {
       text-align: center;
-      color: #00c8ff;
     }
-
-    .tabs {
-      display: flex;
-      justify-content: space-around;
-      margin-bottom: 20px;
-      border-bottom: 2px solid #00c8ff;
+    main {
+      padding: 20px;
     }
-
-    .tab {
-      padding: 10px 20px;
-      cursor: pointer;
-      border-radius: 5px 5px 0 0;
-      background: #1e1e1e;
-      color: #aaa;
+    section {
+      margin-bottom: 30px;
+      background: white;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
     }
-
-    .tab.active {
-      background: #00c8ff;
-      color: black;
+    h2 {
+      margin-top: 0;
     }
-
-    .tab-content {
-      display: none;
-    }
-
-    .tab-content.active {
-      display: block;
-    }
-
-    .product {
-      background: #2a2a2a;
+    select, .game-items {
+      width: 100%;
       padding: 10px;
-      border-radius: 5px;
-      margin-bottom: 10px;
+      margin-top: 10px;
+      font-size: 16px;
     }
-
-    .product h3 {
-      margin: 0 0 5px;
-      color: #00c8ff;
+    .item {
+      padding: 10px;
+      border-bottom: 1px solid #ddd;
     }
-
-    .product p {
-      margin: 0;
-      color: #ccc;
+    .item:last-child {
+      border-bottom: none;
+    }
+    .seller {
+      margin: 10px 0;
+    }
+    a {
+      color: #2980b9;
+      text-decoration: none;
     }
   </style>
 </head>
 <body>
-  <div class="container">
-    <h1>Магазин Robozy</h1>
 
-    <div class="tabs">
-      <div class="tab active" onclick="showTab('products')">🛒 Товары</div>
-      <div class="tab" onclick="showTab('sellers')">🧑‍💼 Продавцы</div>
-      <div class="tab" onclick="showTab('reviews')">⭐ Отзывы</div>
-    </div>
+  <header>
+    <h1>🛍️ Robozy Трейд-Магазин</h1>
+  </header>
 
-    <div id="products" class="tab-content active">
-      <div class="product">
-        <h3>Roblox игра "Tycoon: Башня"</h3>
-        <p>Цена: 250 Robozy</p>
-      </div>
-      <div class="product">
-        <h3>Скин "Cyber Bacon"</h3>
-        <p>Цена: 120 Robozy</p>
-      </div>
-    </div>
+  <main>
+    <section>
+      <h2>Выберите игру:</h2>
+      <select id="gameSelect" onchange="showItems()">
+        <option value="">-- Выберите --</option>
+        <option value="garden">Grow a Garden</option>
+        <option value="mm2">Murder Mystery 2 (MM2)</option>
+        <option value="brainrot">Steal a Brainrot</option>
+      </select>
 
-    <div id="sellers" class="tab-content">
-      <p><strong>Admin_X:</strong> 320 продаж</p>
-      <p><strong>NekoStore:</strong> 150 продаж</p>
-    </div>
+      <div id="items" class="game-items"></div>
+    </section>
 
-    <div id="reviews" class="tab-content">
-      <p>⭐ "Крутой магазин, всё пришло моментально!"</p>
-      <p>⭐⭐⭐⭐⭐ "Продавец общительный, товар норм!"</p>
-    </div>
-  </div>
+    <section>
+      <h2>🧑‍💼 Продавцы</h2>
+      <div class="seller">Animelka<br>Telegram: <a href="https://t.me/animelkaaxd" target="_blank">@animelkaaxd</a></div>
+      <div class="seller">Leadjeans<br>Telegram: <a href="https://t.me/Leadjens" target="_blank">@Leadjens</a></div>
+    </section>
+
+    <section>
+      <h2>💬 Отзывы</h2>
+      <p>Все отзывы и дополнительная информация публикуются тут:</p>
+      <p><a href="https://t.me/robozy" target="_blank">👉 t.me/robozy</a></p>
+    </section>
+  </main>
 
   <script>
-    function showTab(id) {
-      document.querySelectorAll(".tab").forEach(tab => tab.classList.remove("active"));
-      document.querySelectorAll(".tab-content").forEach(tc => tc.classList.remove("active"));
+    const items = {
+      garden: [
+        "🌱 Семена моркови",
+        "💧 Удобрение x10",
+        "💎 VIP-доступ",
+        "👩‍🌾 Аккаунт с прокачкой"
+      ],
+      mm2: [
+        "🔪 Нож 'Godly'",
+        "🎁 Рандомный подарок",
+        "💰 5000 монет",
+        "🧑‍⚖️ Аккаунт с 50 лвл"
+      ],
+      brainrot: [
+        "🧠 Brain Token x100",
+        "👾 Скин 'Glitched'",
+        "⚙️ Модерский доступ",
+        "📱 Аккаунт с Brain Level 10"
+      ]
+    };
 
-      document.querySelector(`[onclick="showTab('${id}')"]`).classList.add("active");
-      document.getElementById(id).classList.add("active");
+    function showItems() {
+      const selectedGame = document.getElementById("gameSelect").value;
+      const itemsDiv = document.getElementById("items");
+      itemsDiv.innerHTML = "";
+
+      if (items[selectedGame]) {
+        items[selectedGame].forEach(item => {
+          const div = document.createElement("div");
+          div.className = "item";
+          div.textContent = item;
+          itemsDiv.appendChild(div);
+        });
+      }
     }
   </script>
+
 </body>
 </html>
