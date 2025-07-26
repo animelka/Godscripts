@@ -8,7 +8,7 @@
     * {margin: 0; padding: 0; box-sizing: border-box;}
     body {
       font-family: 'Segoe UI', sans-serif;
-      background-color: #0f0f0f;
+      background: #0f0f0f;
       color: #fff;
       overflow-x: hidden;
       position: relative;
@@ -16,19 +16,19 @@
     body::before {
       content: "";
       position: fixed;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
+      inset: 0;
       background: radial-gradient(circle, rgba(255,255,255,0.05) 1px, transparent 1px);
       background-size: 30px 30px;
       z-index: 0;
       animation: moveBg 60s linear infinite;
     }
     @keyframes moveBg {
-      from { background-position: 0 0; }
-      to { background-position: 1000px 1000px; }
+      0% { background-position: 0 0; }
+      100% { background-position: 1000px 1000px; }
     }
-    a {color: #00ffff; text-decoration: none;}
-    a:hover {text-decoration: underline;}
+
+    a { color: #0ff; text-decoration: none; }
+    a:hover { text-decoration: underline; }
 
     header {
       background: linear-gradient(135deg, #8b00ff, #00ffff);
@@ -73,7 +73,7 @@
       margin-bottom: 40px;
       border: 1px solid #333;
       box-shadow: 0 0 20px rgba(0,255,255,0.05);
-      transition: transform 0.3s ease;
+      transition: transform 0.3s;
     }
     .game-select:hover,
     .seller-list:hover,
@@ -82,7 +82,6 @@
     }
 
     .game-select button {
-      display: block;
       width: 100%;
       padding: 15px;
       margin: 10px 0;
@@ -92,7 +91,7 @@
       color: #00ffff;
       border-radius: 10px;
       cursor: pointer;
-      transition: 0.3s, transform 0.2s;
+      transition: background 0.3s, transform 0.2s;
     }
     .game-select button:hover {
       background: #333;
@@ -136,21 +135,20 @@
       border-radius: 30px;
       color: black;
       font-weight: bold;
-      transition: all 0.3s;
+      transition: 0.3s;
     }
     .contact-button:hover {
       background: linear-gradient(135deg, #a1ffce, #faffd1);
       transform: scale(1.05);
     }
 
-    .seller {
-      margin-bottom: 15px;
-    }
+    .seller { margin-bottom: 15px; }
     .seller span {
       display: block;
       font-weight: bold;
       color: #00ffee;
     }
+
     .reviews a {
       color: #00ffff;
       font-weight: bold;
@@ -167,18 +165,18 @@
     }
 
     @keyframes fadeIn {
-      from { opacity: 0; }
-      to { opacity: 1; }
+      0% { opacity: 0; }
+      100% { opacity: 1; }
     }
 
     @keyframes fadeInUp {
-      from { opacity: 0; transform: translateY(30px); }
-      to { opacity: 1; transform: translateY(0); }
+      0% { opacity: 0; transform: translateY(30px); }
+      100% { opacity: 1; transform: translateY(0); }
     }
 
     @keyframes glow {
-      from { text-shadow: 0 0 10px #8b00ff; }
-      to { text-shadow: 0 0 20px #00ffff; }
+      0% { text-shadow: 0 0 10px #8b00ff; }
+      100% { text-shadow: 0 0 20px #00ffff; }
     }
   </style>
 </head>
@@ -197,42 +195,10 @@
   <button onclick="showProducts('brainrot')">Steal a Brainrot</button>
 
   <div id="garden" class="product-list">
-    <div class="product">
-      <div class="product-title">Pack Bee</div>
-      <div class="product-details">
-        <strong>Интересует:</strong> Grow a Garden, MM2, Steal a Brainrot, другое<br>
-        <strong>Продавец:</strong> Animelka<br>
-        <strong>В наличии:</strong> 1
-      </div>
-      <a class="contact-button" href="https://t.me/animelkaaxd" target="_blank">Написать</a>
-    </div>
-    <div class="product">
-      <div class="product-title">blood kiwi</div>
-      <div class="product-details">
-        <strong>Интересует:</strong> Grow a Garden, MM2, другое<br>
-        <strong>Продавец:</strong> Busin<br>
-        <strong>В наличии:</strong> 1
-      </div>
-      <a class="contact-button" href="https://t.me/bysinhas" target="_blank">Написать</a>
-    </div>
-    <div class="product">
-      <div class="product-title">Tanchozuru</div>
-      <div class="product-details">
-        <strong>Интересует:</strong> Grow a Garden, MM2, другое<br>
-        <strong>Продавец:</strong> Busin<br>
-        <strong>В наличии:</strong> 1
-      </div>
-      <a class="contact-button" href="https://t.me/bysinhas" target="_blank">Написать</a>
-    </div>
-    <div class="product">
-      <div class="product-title">sea turtle</div>
-      <div class="product-details">
-        <strong>Интересует:</strong> Grow a Garden, MM2<br>
-        <strong>Продавец:</strong> Busin<br>
-        <strong>В наличии:</strong> 1
-      </div>
-      <a class="contact-button" href="https://t.me/bysinhas" target="_blank">Написать</a>
-    </div>
+    <div class="product"><div class="product-title">Pack Bee</div><div class="product-details"><strong>Интересует:</strong> Grow a Garden, MM2, Steal a Brainrot, другое<br><strong>Продавец:</strong> Animelka<br><strong>В наличии:</strong> 1</div><a class="contact-button" href="https://t.me/animelkaaxd" target="_blank">Написать</a></div>
+    <div class="product"><div class="product-title">blood kiwi</div><div class="product-details"><strong>Интересует:</strong> Grow a Garden, MM2, другое<br><strong>Продавец:</strong> Busin<br><strong>В наличии:</strong> 1</div><a class="contact-button" href="https://t.me/bysinhas" target="_blank">Написать</a></div>
+    <div class="product"><div class="product-title">Tanchozuru</div><div class="product-details"><strong>Интересует:</strong> Grow a Garden, MM2, другое<br><strong>Продавец:</strong> Busin<br><strong>В наличии:</strong> 1</div><a class="contact-button" href="https://t.me/bysinhas" target="_blank">Написать</a></div>
+    <div class="product"><div class="product-title">sea turtle</div><div class="product-details"><strong>Интересует:</strong> Grow a Garden, MM2<br><strong>Продавец:</strong> Busin<br><strong>В наличии:</strong> 1</div><a class="contact-button" href="https://t.me/bysinhas" target="_blank">Написать</a></div>
   </div>
 
   <div id="mm2" class="product-list">
@@ -240,50 +206,17 @@
   </div>
 
   <div id="brainrot" class="product-list">
-    <div class="product">
-      <div class="product-title">Trenoszusto turbo 3000</div>
-      <div class="product-details">
-        <strong>Интересует:</strong> Grow a Garden, MM2, Steal a Brainrot, другое<br>
-        <strong>Продавец:</strong> Animelka<br>
-        <strong>В наличии:</strong> 1
-      </div>
-      <a class="contact-button" href="https://t.me/animelkaaxd" target="_blank">Написать</a>
-    </div>
-    <div class="product">
-      <div class="product-title">Girafa celectre</div>
-      <div class="product-details">
-        <strong>Интересует:</strong> Grow a Garden, MM2, Steal a Brainrot, другое<br>
-        <strong>Продавец:</strong> Animelka<br>
-        <strong>В наличии:</strong> 1
-      </div>
-      <a class="contact-button" href="https://t.me/animelkaaxd" target="_blank">Написать</a>
-    </div>
-    <div class="product">
-      <div class="product-title">Orcalero Orcala (lava)</div>
-      <div class="product-details">
-        <strong>Интересует:</strong> Grow a Garden, MM2, Steal a Brainrot, другое<br>
-        <strong>Продавец:</strong> Animelka<br>
-        <strong>В наличии:</strong> 1
-      </div>
-      <a class="contact-button" href="https://t.me/animelkaaxd" target="_blank">Написать</a>
-    </div>
+    <div class="product"><div class="product-title">Trenoszusto turbo 3000</div><div class="product-details"><strong>Интересует:</strong> Grow a Garden, MM2, Steal a Brainrot, другое<br><strong>Продавец:</strong> Animelka<br><strong>В наличии:</strong> 1</div><a class="contact-button" href="https://t.me/animelkaaxd" target="_blank">Написать</a></div>
+    <div class="product"><div class="product-title">Girafa celectre</div><div class="product-details"><strong>Интересует:</strong> Grow a Garden, MM2, Steal a Brainrot, другое<br><strong>Продавец:</strong> Animelka<br><strong>В наличии:</strong> 1</div><a class="contact-button" href="https://t.me/animelkaaxd" target="_blank">Написать</a></div>
+    <div class="product"><div class="product-title">Orcalero Orcala (lava)</div><div class="product-details"><strong>Интересует:</strong> Grow a Garden, MM2, Steal a Brainrot, другое<br><strong>Продавец:</strong> Animelka<br><strong>В наличии:</strong> 1</div><a class="contact-button" href="https://t.me/animelkaaxd" target="_blank">Написать</a></div>
   </div>
 </section>
 
 <section class="seller-list">
   <h2>🧑‍💼 Продавцы</h2>
-  <div class="seller">
-    <span>Animelka</span>
-    Telegram: <a href="https://t.me/animelkaaxd" target="_blank">@animelkaaxd</a>
-  </div>
-  <div class="seller">
-    <span>Leadjeans</span>
-    Telegram: <a href="https://t.me/Leadjens" target="_blank">@Leadjens</a>
-  </div>
-  <div class="seller">
-    <span>Busin</span>
-    Telegram: <a href="https://t.me/bysinhas" target="_blank">@bysinhas</a>
-  </div>
+  <div class="seller"><span>Animelka</span>Telegram: <a href="https://t.me/animelkaaxd" target="_blank">@animelkaaxd</a></div>
+  <div class="seller"><span>Leadjeans</span>Telegram: <a href="https://t.me/Leadjens" target="_blank">@Leadjens</a></div>
+  <div class="seller"><span>Busin</span>Telegram: <a href="https://t.me/bysinhas" target="_blank">@bysinhas</a></div>
 </section>
 
 <section class="reviews">
@@ -298,9 +231,9 @@
 
 <script>
   function showProducts(id) {
-    const lists = document.querySelectorAll('.product-list');
-    lists.forEach(list => list.style.display = 'none');
-    document.getElementById(id).style.display = 'block';
+    document.querySelectorAll('.product-list').forEach(el => {
+      el.style.display = el.id === id ? 'block' : 'none';
+    });
   }
 </script>
 
