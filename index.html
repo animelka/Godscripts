@@ -8,118 +8,230 @@
     * {margin: 0; padding: 0; box-sizing: border-box;}
     body {
       font-family: 'Segoe UI', sans-serif;
-      background-color: #111;
+      background-color: #0f0f0f;
       color: #fff;
     }
+    a {color: #00ffff; text-decoration: none;}
+    a:hover {text-decoration: underline;}
     header {
-      background-color: #222;
-      padding: 20px;
+      background: linear-gradient(135deg, #8b00ff, #00ffff);
+      padding: 30px 20px;
       text-align: center;
-      font-size: 28px;
-      font-weight: bold;
-      color: #00ffff;
     }
-    main {
-      padding: 20px;
+    header h1 {
+      font-size: 2.5rem;
+      background: linear-gradient(90deg, #00ffee, #a800ff);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
     }
-    .section {
-      margin-bottom: 30px;
+    header p {
+      margin-top: 10px;
+      font-size: 1.2rem;
+      color: #ddd;
     }
-    .section-title {
-      font-size: 22px;
-      margin-bottom: 15px;
-      color: #ff00ff;
+    section {
+      max-width: 1000px;
+      margin: 40px auto;
+      padding: 0 20px;
     }
-    .item {
-      background-color: #1e1e1e;
+    h2 {
+      font-size: 2rem;
+      margin-bottom: 20px;
+      color: #00ffe0;
+    }
+    .game-select, .seller-list, .reviews {
+      background: #1c1c1c;
+      border-radius: 15px;
+      padding: 25px;
+      margin-bottom: 40px;
+      border: 1px solid #333;
+    }
+    .game-select button {
+      display: block;
+      width: 100%;
       padding: 15px;
-      margin-bottom: 10px;
-      border-radius: 8px;
-      transition: background-color 0.3s;
-    }
-    .item:hover {
-      background-color: #333;
-    }
-    .item-title {
-      font-size: 18px;
-      font-weight: bold;
+      margin: 10px 0;
+      font-size: 1rem;
+      background: #262626;
+      border: 1px solid #444;
       color: #00ffff;
+      border-radius: 10px;
       cursor: pointer;
-      text-decoration: underline;
+      transition: 0.3s;
     }
-    .item-description {
-      margin-top: 5px;
+    .game-select button:hover {
+      background: #333;
+    }
+    .product-list {
+      display: none;
+      margin-top: 20px;
+    }
+    .product {
+      background: #111;
+      border: 1px solid #333;
+      border-radius: 12px;
+      padding: 20px;
+      margin-bottom: 15px;
+    }
+    .product-title {
+      font-size: 1.3rem;
+      margin-bottom: 10px;
+      color: #ff66ff;
+    }
+    .product-details {
+      margin-bottom: 15px;
+      line-height: 1.5;
       color: #ccc;
     }
-    a {
-      color: inherit;
-      text-decoration: none;
+    .contact-button {
+      display: inline-block;
+      padding: 10px 20px;
+      background: linear-gradient(135deg, #00f2fe, #4facfe);
+      border-radius: 30px;
+      color: black;
+      font-weight: bold;
+      transition: background 0.3s;
+    }
+    .contact-button:hover {
+      background: linear-gradient(135deg, #a1ffce, #faffd1);
+    }
+    .seller {
+      margin-bottom: 15px;
+    }
+    .seller span {
+      display: block;
+      font-weight: bold;
+      color: #00ffee;
+    }
+    .reviews a {
+      color: #00ffff;
+      font-weight: bold;
     }
     footer {
-      margin-top: 40px;
       text-align: center;
-      color: #888;
-      font-size: 14px;
+      padding: 20px;
+      background: #0a0a0a;
+      font-size: 0.9rem;
+      color: #666;
     }
   </style>
 </head>
 <body>
-  <header>RobozyTrade — Лучший трейд-магазин</header>
 
-  <main>
-    <div class="section">
-      <div class="section-title">Игры</div>
-      <div class="item"><div class="item-title">Grow a Garden</div></div>
-      <div class="item"><div class="item-title">MM2</div></div>
-      <div class="item"><div class="item-title">Steal a Brainrot</div></div>
+<header>
+  <h1>RobozyTrade</h1>
+  <p>Лучший трейд-магазин для Roblox-игр</p>
+</header>
+
+<section class="game-select">
+  <h2>🛍️ Товары</h2>
+  <p>Выберите игру:</p>
+  <button onclick="showProducts('garden')">Grow a Garden</button>
+  <button onclick="showProducts('mm2')">Murder Mystery 2 (MM2)</button>
+  <button onclick="showProducts('brainrot')">Steal a Brainrot</button>
+
+  <div id="garden" class="product-list">
+    <div class="product">
+      <div class="product-title">Pack Bee</div>
+      <div class="product-details">
+        <strong>Интересует:</strong> Grow a Garden, MM2, Steal a Brainrot, другое<br>
+        <strong>Продавец:</strong> Animelka<br>
+        <strong>В наличии:</strong> 1
+      </div>
+      <a class="contact-button" href="https://t.me/animelkaaxd" target="_blank">Написать</a>
     </div>
 
-    <div class="section">
-      <div class="section-title">Brainrots</div>
-
-      <div class="item">
-        <a href="https://t.me/robozy" target="_blank">
-          <div class="item-title">Lavacca Saturno Saturnita</div>
-        </a>
-        <div class="item-description">Нажми, чтобы перейти в Telegram</div>
+    <div class="product">
+      <div class="product-title">blood kiwi</div>
+      <div class="product-details">
+        <strong>Интересует:</strong> Grow a Garden, MM2, другое<br>
+        <strong>Продавец:</strong> Busin<br>
+        <strong>В наличии:</strong> 1
       </div>
-
-      <div class="item">
-        <div class="item-title">Pack Bee</div>
-        <div class="item-description">Уникальный пак с Bee стилем</div>
-      </div>
-
-      <div class="item">
-        <div class="item-title">Steal a Brainrot</div>
-        <div class="item-description">Популярный бренд в магазине Robozy</div>
-      </div>
+      <a class="contact-button" href="https://t.me/bysinhas" target="_blank">Написать</a>
     </div>
 
-    <div class="section">
-      <div class="section-title">Продавцы</div>
-      <div class="item">
-        <div class="item-title">Animelka</div>
-        <div class="item-description">@animelkaaxd (Telegram)</div>
+    <div class="product">
+      <div class="product-title">Tanchozuru</div>
+      <div class="product-details">
+        <strong>Интересует:</strong> Grow a Garden, MM2, другое<br>
+        <strong>Продавец:</strong> Busin<br>
+        <strong>В наличии:</strong> 1
       </div>
-      <div class="item">
-        <div class="item-title">Leadjeans</div>
-        <div class="item-description">@Leadjens (Telegram)</div>
-      </div>
+      <a class="contact-button" href="https://t.me/bysinhas" target="_blank">Написать</a>
     </div>
 
-    <div class="section">
-      <div class="section-title">Отзывы и инфо</div>
-      <div class="item">
-        <a href="https://t.me/robozy" target="_blank">
-          <div class="item-title">Отзывы и информация</div>
-        </a>
-        <div class="item-description">Публикуются в нашем Telegram канале</div>
+    <div class="product">
+      <div class="product-title">sea turtle</div>
+      <div class="product-details">
+        <strong>Интересует:</strong> Grow a Garden, MM2<br>
+        <strong>Продавец:</strong> Busin<br>
+        <strong>В наличии:</strong> 1
       </div>
+      <a class="contact-button" href="https://t.me/bysinhas" target="_blank">Написать</a>
     </div>
-  </main>
+  </div>
 
-  <footer>
-    © 2025 RobozyTrade. Все права защищены.
-  </footer>
+  <div id="mm2" class="product-list">
+    <p style="color:#888;">Пока нет товаров в этой категории.</p>
+  </div>
+
+  <div id="brainrot" class="product-list">
+    <div class="product">
+      <div class="product-title">Trenoszusto turbo 3000</div>
+      <div class="product-details">
+        <strong>Интересует:</strong> Grow a Garden, MM2, Steal a Brainrot, другое<br>
+        <strong>Продавец:</strong> Animelka<br>
+        <strong>В наличии:</strong> 1
+      </div>
+      <a class="contact-button" href="https://t.me/animelkaaxd" target="_blank">Написать</a>
+    </div>
+
+    <div class="product">
+      <div class="product-title">Girafa celectre</div>
+      <div class="product-details">
+        <strong>Интересует:</strong> Grow a Garden, MM2, Steal a Brainrot, другое<br>
+        <strong>Продавец:</strong> Animelka<br>
+        <strong>В наличии:</strong> 1
+      </div>
+      <a class="contact-button" href="https://t.me/animelkaaxd" target="_blank">Написать</a>
+    </div>
+  </div>
+</section>
+
+<section class="seller-list">
+  <h2>🧑‍💼 Продавцы</h2>
+  <div class="seller">
+    <span>Animelka</span>
+    Telegram: <a href="https://t.me/animelkaaxd" target="_blank">@animelkaaxd</a>
+  </div>
+  <div class="seller">
+    <span>Leadjeans</span>
+    Telegram: <a href="https://t.me/Leadjens" target="_blank">@Leadjens</a>
+  </div>
+  <div class="seller">
+    <span>Busin</span>
+    Telegram: <a href="https://t.me/bysinhas" target="_blank">@bysinhas</a>
+  </div>
+</section>
+
+<section class="reviews">
+  <h2>💬 Отзывы</h2>
+  <p>Все отзывы и дополнительная информация публикуются тут:</p>
+  <p>👉 <a href="https://t.me/robozy" target="_blank">t.me/robozy</a></p>
+</section>
+
+<footer>
+  &copy; 2025 RobozyTrade — Все права защищены
+</footer>
+
+<script>
+  function showProducts(id) {
+    const lists = document.querySelectorAll('.product-list');
+    lists.forEach(list => list.style.display = 'none');
+    document.getElementById(id).style.display = 'block';
+  }
+</script>
+
 </body>
 </html>
