@@ -1,234 +1,96 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>RobozyTrade — Лучший трейд-магазин</title>
+  <meta charset="UTF-8">
+  <title>RobloxScam Tester</title>
   <style>
-    * {margin: 0; padding: 0; box-sizing: border-box;}
     body {
-      font-family: 'Segoe UI', sans-serif;
-      background: #0f0f0f;
-      color: #fff;
-      overflow-x: hidden;
-      position: relative;
+      font-family: Arial, sans-serif;
+      background: linear-gradient(135deg, #4facfe, #00f2fe);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
     }
-    body::before {
-      content: "";
-      position: fixed;
-      inset: 0;
-      background: radial-gradient(circle, rgba(255,255,255,0.05) 1px, transparent 1px);
-      background-size: 30px 30px;
-      z-index: 0;
-      animation: moveBg 60s linear infinite;
-    }
-    @keyframes moveBg {
-      0% { background-position: 0 0; }
-      100% { background-position: 1000px 1000px; }
-    }
-
-    a { color: #0ff; text-decoration: none; }
-    a:hover { text-decoration: underline; }
-
-    header {
-      background: linear-gradient(135deg, #8b00ff, #00ffff);
-      padding: 40px 20px;
-      text-align: center;
-      position: relative;
-      z-index: 1;
-      animation: fadeIn 1s ease;
-    }
-    header h1 {
-      font-size: 2.8rem;
-      background: linear-gradient(90deg, #00ffee, #a800ff);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      text-shadow: 0 0 10px #a800ff;
-      animation: glow 2s ease-in-out infinite alternate;
-    }
-    header p {
-      margin-top: 10px;
-      font-size: 1.2rem;
-      color: #ddd;
-    }
-
-    section {
-      max-width: 1000px;
-      margin: 40px auto;
-      padding: 0 20px;
-      position: relative;
-      z-index: 1;
-      animation: fadeInUp 1s ease forwards;
-    }
-    h2 {
-      font-size: 2rem;
-      margin-bottom: 20px;
-      color: #00ffe0;
-    }
-
-    .game-select, .seller-list, .reviews {
-      background: #1c1c1c;
+    .container {
+      background: white;
+      padding: 30px;
       border-radius: 15px;
-      padding: 25px;
-      margin-bottom: 40px;
-      border: 1px solid #333;
-      box-shadow: 0 0 20px rgba(0,255,255,0.05);
-      transition: transform 0.3s;
+      box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+      text-align: center;
+      width: 400px;
     }
-    .game-select:hover,
-    .seller-list:hover,
-    .reviews:hover {
-      transform: scale(1.01);
+    h1 {
+      margin-bottom: 20px;
+      color: #333;
     }
-
-    .game-select button {
+    input {
       width: 100%;
-      padding: 15px;
-      margin: 10px 0;
-      font-size: 1rem;
-      background: #262626;
-      border: 1px solid #444;
-      color: #00ffff;
+      padding: 10px;
+      margin-bottom: 15px;
+      border: 2px solid #ddd;
+      border-radius: 10px;
+      font-size: 16px;
+    }
+    button {
+      background: #4facfe;
+      border: none;
+      padding: 10px 20px;
+      font-size: 16px;
+      color: white;
       border-radius: 10px;
       cursor: pointer;
-      transition: background 0.3s, transform 0.2s;
-    }
-    .game-select button:hover {
-      background: #333;
-      transform: scale(1.02);
-      box-shadow: 0 0 10px #00ffff50;
-    }
-
-    .product-list {
-      display: none;
-      margin-top: 20px;
-      animation: fadeIn 0.6s ease-in-out;
-    }
-    .product {
-      background: #111;
-      border: 1px solid #333;
-      border-radius: 12px;
-      padding: 20px;
-      margin-bottom: 15px;
-      box-shadow: 0 0 10px rgba(255,255,255,0.02);
-      transition: transform 0.3s;
-    }
-    .product:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 0 15px rgba(0, 255, 255, 0.2);
-    }
-    .product-title {
-      font-size: 1.4rem;
-      margin-bottom: 10px;
-      color: #ff66ff;
-      text-shadow: 0 0 5px #ff66ff66;
-    }
-    .product-details {
-      margin-bottom: 15px;
-      line-height: 1.5;
-      color: #ccc;
-    }
-    .contact-button {
-      display: inline-block;
-      padding: 10px 20px;
-      background: linear-gradient(135deg, #00f2fe, #4facfe);
-      border-radius: 30px;
-      color: black;
-      font-weight: bold;
       transition: 0.3s;
     }
-    .contact-button:hover {
-      background: linear-gradient(135deg, #a1ffce, #faffd1);
-      transform: scale(1.05);
+    button:hover {
+      background: #00c6ff;
     }
-
-    .seller { margin-bottom: 15px; }
-    .seller span {
-      display: block;
+    .result {
+      margin-top: 15px;
       font-weight: bold;
-      color: #00ffee;
+      font-size: 18px;
     }
-
-    .reviews a {
-      color: #00ffff;
-      font-weight: bold;
+    .safe {
+      color: green;
     }
-
-    footer {
-      text-align: center;
-      padding: 20px;
-      background: #0a0a0a;
-      font-size: 0.9rem;
-      color: #666;
-      position: relative;
-      z-index: 1;
-    }
-
-    @keyframes fadeIn {
-      0% { opacity: 0; }
-      100% { opacity: 1; }
-    }
-
-    @keyframes fadeInUp {
-      0% { opacity: 0; transform: translateY(30px); }
-      100% { opacity: 1; transform: translateY(0); }
-    }
-
-    @keyframes glow {
-      0% { text-shadow: 0 0 10px #8b00ff; }
-      100% { text-shadow: 0 0 20px #00ffff; }
+    .scam {
+      color: red;
     }
   </style>
 </head>
 <body>
-
-<header>
-  <h1>RobozyTrade</h1>
-  <p>Лучший трейд-магазин для Roblox-игр</p>
-</header>
-
-<section class="game-select">
-  <h2>🛍️ Товары</h2>
-  <p>Выберите игру:</p>
-  <button onclick="showProducts('garden')">Grow a Garden</button>
-  <button onclick="showProducts('mm2')">Murder Mystery 2 (MM2)</button>
-
-  <div id="garden" class="product-list">
-    <div class="product"><div class="product-title">Pack Bee</div><div class="product-details"><strong>Интересует:</strong> Grow a Garden, MM2, Steal a Brainrot, другое<br><strong>Продавец:</strong> Animelka<br><strong>В наличии:</strong> 1</div><a class="contact-button" href="https://t.me/animelkaaxd" target="_blank">Написать</a></div>
-    <div class="product"><div class="product-title">blood kiwi</div><div class="product-details"><strong>Интересует:</strong> Grow a Garden, MM2, другое<br><strong>Продавец:</strong> Busin<br><strong>В наличии:</strong> 1</div><a class="contact-button" href="https://t.me/bysinhas" target="_blank">Написать</a></div>
-    <div class="product"><div class="product-title">Tanchozuru</div><div class="product-details"><strong>Интересует:</strong> Grow a Garden, MM2, другое<br><strong>Продавец:</strong> Busin<br><strong>В наличии:</strong> 1</div><a class="contact-button" href="https://t.me/bysinhas" target="_blank">Написать</a></div>
-    <div class="product"><div class="product-title">sea turtle</div><div class="product-details"><strong>Интересует:</strong> Grow a Garden, MM2<br><strong>Продавец:</strong> Busin<br><strong>В наличии:</strong> 1</div><a class="contact-button" href="https://t.me/bysinhas" target="_blank">Написать</a></div>
+  <div class="container">
+    <h1>RobloxScam Tester</h1>
+    <input type="text" id="url" placeholder="Вставь Roblox ссылку...">
+    <button onclick="checkURL()">Проверить</button>
+    <div id="result" class="result"></div>
   </div>
 
-  <div id="mm2" class="product-list">
-    <p style="color:#888;">Пока нет товаров в этой категории.</p>
-  </div>
+  <script>
+    function checkURL() {
+      const url = document.getElementById("url").value.trim();
+      const result = document.getElementById("result");
 
-  
-<section class="seller-list">
-  <h2>🧑‍💼 Продавцы</h2>
-  <div class="seller"><span>Animelka</span>Telegram: <a href="https://t.me/animelkaaxd" target="_blank">@animelkaaxd</a></div>
-  <div class="seller"><span>Leadjeans</span>Telegram: <a href="https://t.me/Leadjens" target="_blank">@Leadjens</a></div>
-  <div class="seller"><span>Busin</span>Telegram: <a href="https://t.me/bysinhas" target="_blank">@bysinhas</a></div>
-</section>
+      // настоящие домены Roblox
+      const safeDomains = ["roblox.com", "www.roblox.com"];
 
-<section class="reviews">
-  <h2>💬 Отзывы</h2>
-  <p>Все отзывы и дополнительная информация публикуются тут:</p>
-  <p>👉 <a href="https://t.me/robozy" target="_blank">t.me/robozy</a></p>
-</section>
+      try {
+        const parsed = new URL(url);
+        const hostname = parsed.hostname.toLowerCase();
 
-<footer>
-  &copy; 2025 RobozyTrade — Все права защищены
-</footer>
-
-<script>
-  function showProducts(id) {
-    document.querySelectorAll('.product-list').forEach(el => {
-      el.style.display = el.id === id ? 'block' : 'none';
-    });
-  }
-</script>
-
+        if (safeDomains.includes(hostname)) {
+          result.textContent = "✅ Это официальная Roblox ссылка.";
+          result.className = "result safe";
+        } else {
+          result.textContent = "❌ Подозрительная ссылка! Возможный скам.";
+          result.className = "result scam";
+        }
+      } catch (e) {
+        result.textContent = "⚠️ Неверная ссылка.";
+        result.className = "result scam";
+      }
+    }
+  </script>
 </body>
 </html>
